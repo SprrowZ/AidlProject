@@ -31,33 +31,33 @@ public class MainActivity extends AppCompatActivity {
     //传递实体类
     private IMyAidlInterface aidlEx;
 
-//    private ServiceConnection conn=new ServiceConnection() {
-//        @Override
-//        public void onServiceConnected(ComponentName name, IBinder service) {
-//            //绑定的时候调用
-//            //拿到远程的服务
-//            aidl= IDemoAIDL.Stub.asInterface(service);
-//            Log.i("zzz", "onServiceConnected: ");
-//        }
-//
-//        @Override
-//        public void onServiceDisconnected(ComponentName name) {
-//            //解绑的时候调用
-//            aidl=null;
-//        }
-//    };
-    //传递实体类
-    private ServiceConnection connection=new ServiceConnection() {
+    private ServiceConnection conn=new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            aidlEx=IMyAidlInterface.Stub.asInterface(service);
+            //绑定的时候调用
+            //拿到远程的服务
+            aidl= IDemoAIDL.Stub.asInterface(service);
+            Log.i("zzz", "onServiceConnected: ");
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-           aidlEx=null;
+            //解绑的时候调用
+            aidl=null;
         }
     };
+    //传递实体类
+//    private ServiceConnection connection=new ServiceConnection() {
+//        @Override
+//        public void onServiceConnected(ComponentName name, IBinder service) {
+//            aidlEx=IMyAidlInterface.Stub.asInterface(service);
+//        }
+//
+//        @Override
+//        public void onServiceDisconnected(ComponentName name) {
+//           aidlEx=null;
+//        }
+//    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,21 +75,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //最初测试用
-//                int num1= Integer.parseInt(et_num1.getText().toString());
-//                int num2= Integer.parseInt(et_num2.getText().toString());
-//                try {
-//                    int resu=aidl.add(num1,num2);
-//                    result.setText(String.valueOf(resu));
-//                } catch (RemoteException e) {
-//                    e.printStackTrace();
-//                    result.setText("出错！");
-//                }
+                int num1= Integer.parseInt(et_num1.getText().toString());
+                int num2= Integer.parseInt(et_num2.getText().toString());
                 try {
-                    ArrayList<PersonBean> result= (ArrayList<PersonBean>) aidlEx.add(new PersonBean("宇智波鼬",true));
-                    Log.d("Persons", "onClick: "+result.toString());
+                    int resu=aidl.add(num1,num2);
+                    result.setText(String.valueOf(resu));
                 } catch (RemoteException e) {
                     e.printStackTrace();
+                    result.setText("出错！");
                 }
+
+
+//                //传递实体类
+//                try {
+//                    ArrayList<PersonBean> result= (ArrayList<PersonBean>) aidlEx.add(new PersonBean("宇智波鼬",true));
+//                    Log.d("Persons", "onClick: "+result.toString());
+//                } catch (RemoteException e) {
+//                    e.printStackTrace();
+//                }
             }
         });
     }
@@ -99,8 +102,9 @@ public class MainActivity extends AppCompatActivity {
         intent.setAction("com.rye.catcher.project.services.IRemoteService");
         intent.setPackage("com.rye.catcher.zzg.anyOATest");
         //测试用
-      //  bindService(intent,conn, Service.BIND_AUTO_CREATE);
-        bindService(intent,connection,Service.BIND_AUTO_CREATE);
+        bindService(intent,conn, Service.BIND_AUTO_CREATE);
+        //传递实体类用
+//        bindService(intent,connection,Service.BIND_AUTO_CREATE);
 
     }
 
@@ -108,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         //最初测试用
-        //unbindService(conn);
-        unbindService(connection);
+        unbindService(conn);
+//        unbindService(connection);
     }
 }
