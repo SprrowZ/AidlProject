@@ -4,26 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.rye.catcher.activity.AIDLClientActivity">
+    tools:context="com.rye.catcher.activity.ContentProviderActivity">
 
-    <TextView
-        android:id="@+id/tv_aidl"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/tv_edit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/shape_stroke_main_btn"
-        android:gravity="center_vertical"
-        android:padding="10dp"
-        android:text="AIDL"
-        android:textAllCaps="false"
+        android:hint="请输入搜索条件"
+        android:textColor="@color/soft6"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_content_provider"
+        android:id="@+id/tv_query"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -31,9 +27,35 @@
         android:background="@drawable/shape_stroke_main_btn"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:text="ContentProvider"
+        android:text="Query"
         android:textAllCaps="false"
         android:textSize="24sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_aidl" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_edit" />
+
+    <TextView
+        android:id="@+id/tv_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_stroke_main_btn"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="Insert"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_query" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_insert"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="10dp" />
+
+
 </android.support.constraint.ConstraintLayout>

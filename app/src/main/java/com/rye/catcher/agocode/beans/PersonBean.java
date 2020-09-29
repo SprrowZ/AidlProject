@@ -1,4 +1,4 @@
-package com.rye.catcher.activity;
+package com.rye.catcher.agocode.beans;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -46,9 +46,9 @@ public class PersonBean implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-      dest.writeString(name);
-      //通过byte传递boolean值
-      dest.writeByte((byte)(sex?1:0));
+        dest.writeString(name);
+        //通过byte传递boolean值
+        dest.writeByte((byte) (sex ? 1 : 0));
     }
 
     public static final Creator<PersonBean> CREATOR = new Creator<PersonBean>() {

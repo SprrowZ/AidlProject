@@ -1,5 +1,5 @@
 // IDemoAIDL.aidl
-package com.rye.catcher.activity;
+package com.rye.catcher.agocode.beans;
 
 // Declare any non-default types here with import statements
 

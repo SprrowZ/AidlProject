@@ -1,6 +1,6 @@
 // IMyAidlInterface.aidl
-package com.rye.catcher.activity;
-import com.rye.catcher.activity.PersonBean;
+package com.rye.catcher.agocode.beans;
+import com.rye.catcher.agocode.beans.PersonBean;
 // Declare any non-default types here with import statements
 
 interface IMyAidlInterface {

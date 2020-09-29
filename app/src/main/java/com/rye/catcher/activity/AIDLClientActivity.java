@@ -1,7 +1,8 @@
-package com.rye.catcher.aidldemo;
+package com.rye.catcher.activity;
 
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
@@ -14,14 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.rye.catcher.activity.IDemoAIDL;
-import com.rye.catcher.activity.IMyAidlInterface;
-import com.rye.catcher.activity.PersonBean;
-
-import java.util.ArrayList;
+import com.rye.catcher.agocode.beans.IDemoAIDL;
+import com.rye.catcher.agocode.beans.IMyAidlInterface;
+import com.rye.catcher.aidldemo.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class AIDLClientActivity extends AppCompatActivity {
     private EditText et_num1;
     private EditText et_num2;
     private TextView result;
@@ -58,10 +57,17 @@ public class MainActivity extends AppCompatActivity {
 //           aidlEx=null;
 //        }
 //    };
+
+
+
+    public static void start(Context context){
+        Intent intent =new Intent(context,AIDLClientActivity.class);
+        context.startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_aidl);
         initView();
         bindService();
     }
